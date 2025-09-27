@@ -1,6 +1,6 @@
 import { useTaskContext } from "../../context/TaskContext";
 import type { Task } from "../../types";
-// import TaskCard from "./TaskCard";
+import TaskCard from "../TaskCard/TaskCard";
 
 import "./TaskList.css";
 
@@ -36,14 +36,13 @@ function TaskList({ onEdit, searchQuery }:TaskListProps) {
     <div className="task-list">
       {filteredTasks?.map((task) => {
         return (
-        //   <TaskCard
-        //     key={task.id}
-        //     task={task}
-        //     onDelete={deleteTask}
-        //     onEdit={onEdit}
-        //     searchQuery={searchQuery}
-            //   />
-            <p key={ task.id}> {task.title}</p>
+          <TaskCard
+            key={task.id}
+            task={task}
+            onDelete={deleteTask}
+            onEdit={onEdit}
+            searchQuery={searchQuery}
+              />
         );
       })}
     </div>
