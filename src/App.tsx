@@ -38,7 +38,7 @@ function App() {
             onSaveEdit={handleSaveEdit}
             onCancelEdit={handleCancelEdit}
           />
-          <TaskList onEdit={handleEditRequest} searchQuery={""} />
+          <TaskList onEdit={handleEditRequest} searchQuery={searchQuery} />
         </div>
       </div>
     </TaskProvider>
