@@ -1,5 +1,5 @@
 export interface Task {
-  id: string;
+  id: string | undefined;
   title: string;
   description: string;
   priority: Priority;
@@ -25,6 +25,7 @@ export interface TaskFormData {
   priority: Priority;
   category: Category;
   dueDate: string;
+  id: string | undefined;
 }
 
 export interface TaskContextType {

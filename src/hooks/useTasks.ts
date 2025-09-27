@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { sampleTasks, TASKS_STORAGE_KEY } from "../data/constants";
-import type { Task, TaskContextType } from "../types";
+import type { Task, TaskContextType, TaskFormData } from "../types";
 
 const loadTasksFromStorage = (): Task[] => {
   try {
@@ -44,15 +44,12 @@ export default function useTasks(): TaskContextType {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   }, []);
 
-  const editTask = useCallback(
-    (updatedTask: Omit<Task, "completed" | "createdAt">) => {
-      setTasks((prev) =>
-        prev.map((task) =>
-          task.id === updatedTask.id ? { ...task, ...updatedTask } : task
-        )
-      );
-    },
-    []
-  );
+  const editTask = useCallback((updatedTask: TaskFormData) => {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+      )
+    );
+  }, []);
   return { tasks, addTask, deleteTask, editTask };
 }
