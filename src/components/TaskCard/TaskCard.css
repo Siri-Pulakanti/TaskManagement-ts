@@ -115,7 +115,6 @@
 .task-due-date {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
   font-weight: 500;
 }
 .task-due-date.overdue {
