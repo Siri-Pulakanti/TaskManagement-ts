@@ -26,3 +26,10 @@ export interface TaskFormData {
   category: Category;
   dueDate: string;
 }
+
+export interface TaskContextType {
+  tasks: Task[];
+  addTask: (task: Omit<Task, "id" | "completed" | "createdAt">) => void;
+  deleteTask: (id: string) => void;
+  editTask: (updatedTask: Omit<Task, "completed" | "createdAt">) => void;
+}
