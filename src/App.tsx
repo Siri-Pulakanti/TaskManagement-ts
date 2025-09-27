@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import TaskForm from "./components/TaskForm/TaskForm";
 import TaskList from "./components/TaskList/TaskList";
@@ -5,23 +6,41 @@ import { TaskProvider } from "./context/TaskContext";
 import type { Task } from "./types";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [editTaskData, setEditTaskData] = useState<Task | null>(null);
+
+  const handleEditRequest = (task: Task): void => {
+    setEditTaskData(task);
+  };
+  const handleSaveEdit = (): void => {
+    setEditTaskData(null);
+  };
+  const handleCancelEdit = (): void => {
+    setEditTaskData(null);
+  };
   return (
     <TaskProvider>
-      <TaskForm
-        editTaskData={null}
-        onSaveEdit={function (): void {
-          // throw new Error("Function not implemented.");
-        }}
-        onCancelEdit={function (): void {
-          // throw new Error("Function not implemented.");
-        }}
-      />
-      <TaskList
-        onEdit={function (task: Task): void {
-          // throw new Error('Function not implemented.')
-        }}
-        searchQuery={""}
-      />
+      <div className="App">
+        <div className="app-header-row">
+          <h1>Task Management</h1>
+          <input
+            className="search-bar"
+            value={searchQuery}
+            placeholder="Search Tasks"
+            type="text"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div className="task-container">
+          <TaskForm
+            editTaskData={editTaskData}
+            onSaveEdit={handleSaveEdit}
+            onCancelEdit={handleCancelEdit}
+          />
+          <TaskList onEdit={handleEditRequest} searchQuery={""} />
+        </div>
+      </div>
     </TaskProvider>
   );
 }

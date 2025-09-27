@@ -4,7 +4,7 @@ import { formatDate, getDueDateStatus } from "../../utils/date";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDIalog";
 import "./TaskCard.css";
 
-const highlightText = (text:string, query:string) => {
+const highlightText = (text: string, query: string) => {
   if (!text || !query) {
     return text;
   } else {
@@ -24,13 +24,13 @@ const highlightText = (text:string, query:string) => {
     );
   }
 };
-interface TaskCardProps{
-    task: Task;
-    onDelete: (id: string) => void;
-    onEdit: (task: Task) => void;
-    searchQuery: string;
+interface TaskCardProps {
+  task: Task;
+  onDelete: (id: string | undefined) => void;
+  onEdit: (task: Task) => void;
+  searchQuery: string;
 }
-function TaskCard({ task, onDelete, onEdit, searchQuery }:TaskCardProps) {
+function TaskCard({ task, onDelete, onEdit, searchQuery }: TaskCardProps) {
   const dueDateStatus = getDueDateStatus(task.dueDate);
   const query = searchQuery || "";
   const [showPopup, setShowPopup] = useState(false);
